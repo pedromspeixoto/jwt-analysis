@@ -1,0 +1,596 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OutSystems.NssJWT_Core</name>
+    </assembly>
+    <members>
+        <member name="M:OutSystems.NssJWT_Core.CssJWT_Core.MssVerifyToken">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.CssJWT_Core.MssCreateToken(OutSystems.NssJWT_Core.RCTokenSymmetricSigningCredentialsRecord,OutSystems.NssJWT_Core.RCTokenAsymmetricSigningCredentialsRecord,OutSystems.NssJWT_Core.RCTokenPayloadRecord,System.Boolean,System.String@,System.String@,System.String@)">
+            <summary>
+            Created a new token based on the defined claims and signing definitions.
+            </summary>
+            <param name="ssSymmetricCredentials">Credentials necessary to sign the token with a symmetric key.</param>
+            <param name="ssAsymmetricCredentials">Credentials necessary to sign the token with an asymmetric key.</param>
+            <param name="ssPayload">Complete list of the claims for the token. </param>
+            <param name="ssShowDebugInformation">Enable returning debug information</param>
+            <param name="ssPlainToken">Unencoded and formatted JSON of the JSON Web Token.</param>
+            <param name="ssSignedAndEncodedToken">Encoded and signed JSON Web TOken.</param>
+            <param name="ssResultMessage">Resulting status message, for additional information.</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.CssJWT_Core.MssReadToken(System.String,System.Boolean,System.String,System.String,System.Boolean,System.Boolean,System.String,System.Boolean,System.String,System.Boolean,System.String@,OutSystems.NssJWT_Core.RCTokenHeaderRecord@,OutSystems.NssJWT_Core.RCTokenPayloadRecord@,System.Boolean@,System.String@)">
+            <summary>
+            Reads a token encoded in JSON Compact serialized format.
+            </summary>
+            <param name="ssVerifySignature">Set to run token signature verification</param>
+            <param name="ssSignedAndEncodedToken">The input token, enconded in base64</param>
+            <param name="ssSignatureKey">Key used to verify the token. Secrete key for symmetric algorithms, public key for asymmetric algorithms. </param>
+            <param name="ssSignatureKeyId">Id assigned to the key used to sign the token</param>
+            <param name="ssVerifyLifetime"></param>
+            <param name="ssVerifyIssuer"></param>
+            <param name="ssIssuer"></param>
+            <param name="ssVerifyAudience"></param>
+            <param name="ssAudience"></param>
+            <param name="ssShowDebugInformation">Enable returning debug information</param>
+            <param name="ssPayload">Full list of token claims</param>
+            <param name="ssHasValidToken">result of token verification</param>
+            <param name="ssPlainToken">Decoded token</param>
+            <param name="ssResultMessage"></param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.IssJWT_Core.MssCreateToken(OutSystems.NssJWT_Core.RCTokenSymmetricSigningCredentialsRecord,OutSystems.NssJWT_Core.RCTokenAsymmetricSigningCredentialsRecord,OutSystems.NssJWT_Core.RCTokenPayloadRecord,System.Boolean,System.String@,System.String@,System.String@)">
+            <summary>
+            Created a new token based on the defined claims and signing definitions.
+            If both symmetric and asymmetric signing credentials are passed as input will throw an error, if none of signing credentials are passed the token will be generated but not signed.
+            </summary>
+            <param name="ssSymmetricCredentials">Credentials necessary to sign the token with a symmetric key.</param>
+            <param name="ssAsymmetricCredentials">Credentials necessary to sign the token with an asymmetric key.</param>
+            <param name="ssPayload">Complete token claims list.</param>
+            <param name="ssShowDebugInformation"></param>
+            <param name="ssResultMessage"></param>
+            <param name="ssPlainToken">Token&apos;s Header and Payload in JSON format, </param>
+            <param name="ssEncodedToken">Encoded Token. Signing options were passed it will include the signature, if not only the header and payload.</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.IssJWT_Core.MssReadToken(System.String,System.Boolean,System.String,System.String,System.Boolean,System.Boolean,System.String,System.Boolean,System.String,System.Boolean,System.String@,OutSystems.NssJWT_Core.RCTokenHeaderRecord@,OutSystems.NssJWT_Core.RCTokenPayloadRecord@,System.Boolean@,System.String@)">
+            <summary>
+            Reads a token encoded in JSON Compact serialized format. Returns
+            </summary>
+            <param name="ssEncodedToken">The token to be decoded, and verified if needed. </param>
+            <param name="ssVerifySignature">Indicates if the token&apos;s signature should be verified.</param>
+            <param name="ssSignatureKey">Key used to verify the token, needed only if VerifySignature is selected. The algorithm is read from the token.
+            
+            For symmetric algorithms will be the secret key, for asymmetric algorithms will be the public key of the keypair.</param>
+            <param name="ssSignatureKeyId">Id assigned to the key used for signing the token.</param>
+            <param name="ssVerifyLifetime">Indicates if token&apos;s lifetime should be validated.</param>
+            <param name="ssVerifyIssuer">Indicates if the token&apos;s issuer should be validated.</param>
+            <param name="ssIssuer">Issuer to be validated in the token.</param>
+            <param name="ssVerifyAudience">Indicates the audience should be validated.</param>
+            <param name="ssAudience">Issuer to be validated in the token.</param>
+            <param name="ssShowDebugInformation"></param>
+            <param name="ssPlainToken">Plain text token with the claims in JSON format.</param>
+            <param name="ssTokenHeader">Structure containing the token header</param>
+            <param name="ssTokenPayload">Structure containing the token payload, invluding the custom claimsr</param>
+            <param name="ssHasValidToken">Result of the signature verification.</param>
+            <param name="ssResultMessage">Should be empty if validation succeeds, if the validation fails should contain the output message.</param>
+        </member>
+        <member name="T:OutSystems.NssJWT_Core.STNameValuePairStructure">
+            <summary>
+            Structure <code>STNameValuePairStructure</code> that represents the Service Studio structure
+             <code>NameValuePair</code> <p> Description: Name-value pair for a Claim.</p>
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.STNameValuePairStructure.Read(System.Data.IDataReader,System.Int32@)">
+            <summary>
+            Read a record from database
+            </summary>
+            <param name="r"> Data base reader</param>
+            <param name="index"> index</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.STNameValuePairStructure.ReadDB(System.Data.IDataReader)">
+            <summary>
+            Read from database
+            </summary>
+            <param name="r"> Data reader</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.STNameValuePairStructure.ReadIM(OutSystems.NssJWT_Core.STNameValuePairStructure)">
+            <summary>
+            Read from record
+            </summary>
+            <param name="r"> Record</param>
+        </member>
+        <member name="T:OutSystems.NssJWT_Core.STTokenSymmetricSigningCredentialsStructure">
+            <summary>
+            Structure <code>STTokenSymmetricSigningCredentialsStructure</code> that represents the Service
+             Studio structure <code>TokenSymmetricSigningCredentials</code> <p> Description: </p>
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.STTokenSymmetricSigningCredentialsStructure.Read(System.Data.IDataReader,System.Int32@)">
+            <summary>
+            Read a record from database
+            </summary>
+            <param name="r"> Data base reader</param>
+            <param name="index"> index</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.STTokenSymmetricSigningCredentialsStructure.ReadDB(System.Data.IDataReader)">
+            <summary>
+            Read from database
+            </summary>
+            <param name="r"> Data reader</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.STTokenSymmetricSigningCredentialsStructure.ReadIM(OutSystems.NssJWT_Core.STTokenSymmetricSigningCredentialsStructure)">
+            <summary>
+            Read from record
+            </summary>
+            <param name="r"> Record</param>
+        </member>
+        <member name="T:OutSystems.NssJWT_Core.STTokenAsymmetricSigningCredentialsStructure">
+            <summary>
+            Structure <code>STTokenAsymmetricSigningCredentialsStructure</code> that represents the Service
+             Studio structure <code>TokenAsymmetricSigningCredentials</code> <p> Description: </p>
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.STTokenAsymmetricSigningCredentialsStructure.Read(System.Data.IDataReader,System.Int32@)">
+            <summary>
+            Read a record from database
+            </summary>
+            <param name="r"> Data base reader</param>
+            <param name="index"> index</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.STTokenAsymmetricSigningCredentialsStructure.ReadDB(System.Data.IDataReader)">
+            <summary>
+            Read from database
+            </summary>
+            <param name="r"> Data reader</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.STTokenAsymmetricSigningCredentialsStructure.ReadIM(OutSystems.NssJWT_Core.STTokenAsymmetricSigningCredentialsStructure)">
+            <summary>
+            Read from record
+            </summary>
+            <param name="r"> Record</param>
+        </member>
+        <member name="T:OutSystems.NssJWT_Core.STTokenPayloadStructure">
+            <summary>
+            Structure <code>STTokenPayloadStructure</code> that represents the Service Studio structure
+             <code>TokenPayload</code> <p> Description: Defines the token payload, with all the claims that tak
+            e part in a token, both the custom and reserved claims.</p>
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.STTokenPayloadStructure.Read(System.Data.IDataReader,System.Int32@)">
+            <summary>
+            Read a record from database
+            </summary>
+            <param name="r"> Data base reader</param>
+            <param name="index"> index</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.STTokenPayloadStructure.ReadDB(System.Data.IDataReader)">
+            <summary>
+            Read from database
+            </summary>
+            <param name="r"> Data reader</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.STTokenPayloadStructure.ReadIM(OutSystems.NssJWT_Core.STTokenPayloadStructure)">
+            <summary>
+            Read from record
+            </summary>
+            <param name="r"> Record</param>
+        </member>
+        <member name="T:OutSystems.NssJWT_Core.STVerifySignatureOptionsStructure">
+            <summary>
+            Structure <code>STVerifySignatureOptionsStructure</code> that represents the Service Studio
+             structure <code>VerifySignatureOptions</code> <p> Description: </p>
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.STVerifySignatureOptionsStructure.Read(System.Data.IDataReader,System.Int32@)">
+            <summary>
+            Read a record from database
+            </summary>
+            <param name="r"> Data base reader</param>
+            <param name="index"> index</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.STVerifySignatureOptionsStructure.ReadDB(System.Data.IDataReader)">
+            <summary>
+            Read from database
+            </summary>
+            <param name="r"> Data reader</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.STVerifySignatureOptionsStructure.ReadIM(OutSystems.NssJWT_Core.STVerifySignatureOptionsStructure)">
+            <summary>
+            Read from record
+            </summary>
+            <param name="r"> Record</param>
+        </member>
+        <member name="T:OutSystems.NssJWT_Core.STTokenHeaderStructure">
+            <summary>
+            Structure <code>STTokenHeaderStructure</code> that represents the Service Studio structure
+             <code>TokenHeader</code> <p> Description: Defines the header section of a token</p>
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.STTokenHeaderStructure.Read(System.Data.IDataReader,System.Int32@)">
+            <summary>
+            Read a record from database
+            </summary>
+            <param name="r"> Data base reader</param>
+            <param name="index"> index</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.STTokenHeaderStructure.ReadDB(System.Data.IDataReader)">
+            <summary>
+            Read from database
+            </summary>
+            <param name="r"> Data reader</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.STTokenHeaderStructure.ReadIM(OutSystems.NssJWT_Core.STTokenHeaderStructure)">
+            <summary>
+            Read from record
+            </summary>
+            <param name="r"> Record</param>
+        </member>
+        <member name="T:OutSystems.NssJWT_Core.RCNameValuePairRecord">
+            <summary>
+            Structure <code>RCNameValuePairRecord</code>
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RCNameValuePairRecord.Read(System.Data.IDataReader,System.Int32@)">
+            <summary>
+            Read a record from database
+            </summary>
+            <param name="r"> Data base reader</param>
+            <param name="index"> index</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RCNameValuePairRecord.ReadDB(System.Data.IDataReader)">
+            <summary>
+            Read from database
+            </summary>
+            <param name="r"> Data reader</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RCNameValuePairRecord.ReadIM(OutSystems.NssJWT_Core.RCNameValuePairRecord)">
+            <summary>
+            Read from record
+            </summary>
+            <param name="r"> Record</param>
+        </member>
+        <member name="T:OutSystems.NssJWT_Core.RCTokenSymmetricSigningCredentialsRecord">
+            <summary>
+            Structure <code>RCTokenSymmetricSigningCredentialsRecord</code>
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RCTokenSymmetricSigningCredentialsRecord.Read(System.Data.IDataReader,System.Int32@)">
+            <summary>
+            Read a record from database
+            </summary>
+            <param name="r"> Data base reader</param>
+            <param name="index"> index</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RCTokenSymmetricSigningCredentialsRecord.ReadDB(System.Data.IDataReader)">
+            <summary>
+            Read from database
+            </summary>
+            <param name="r"> Data reader</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RCTokenSymmetricSigningCredentialsRecord.ReadIM(OutSystems.NssJWT_Core.RCTokenSymmetricSigningCredentialsRecord)">
+            <summary>
+            Read from record
+            </summary>
+            <param name="r"> Record</param>
+        </member>
+        <member name="T:OutSystems.NssJWT_Core.RCTokenAsymmetricSigningCredentialsRecord">
+            <summary>
+            Structure <code>RCTokenAsymmetricSigningCredentialsRecord</code>
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RCTokenAsymmetricSigningCredentialsRecord.Read(System.Data.IDataReader,System.Int32@)">
+            <summary>
+            Read a record from database
+            </summary>
+            <param name="r"> Data base reader</param>
+            <param name="index"> index</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RCTokenAsymmetricSigningCredentialsRecord.ReadDB(System.Data.IDataReader)">
+            <summary>
+            Read from database
+            </summary>
+            <param name="r"> Data reader</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RCTokenAsymmetricSigningCredentialsRecord.ReadIM(OutSystems.NssJWT_Core.RCTokenAsymmetricSigningCredentialsRecord)">
+            <summary>
+            Read from record
+            </summary>
+            <param name="r"> Record</param>
+        </member>
+        <member name="T:OutSystems.NssJWT_Core.RCTokenPayloadRecord">
+            <summary>
+            Structure <code>RCTokenPayloadRecord</code>
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RCTokenPayloadRecord.Read(System.Data.IDataReader,System.Int32@)">
+            <summary>
+            Read a record from database
+            </summary>
+            <param name="r"> Data base reader</param>
+            <param name="index"> index</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RCTokenPayloadRecord.ReadDB(System.Data.IDataReader)">
+            <summary>
+            Read from database
+            </summary>
+            <param name="r"> Data reader</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RCTokenPayloadRecord.ReadIM(OutSystems.NssJWT_Core.RCTokenPayloadRecord)">
+            <summary>
+            Read from record
+            </summary>
+            <param name="r"> Record</param>
+        </member>
+        <member name="T:OutSystems.NssJWT_Core.RCVerifySignatureOptionsRecord">
+            <summary>
+            Structure <code>RCVerifySignatureOptionsRecord</code>
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RCVerifySignatureOptionsRecord.Read(System.Data.IDataReader,System.Int32@)">
+            <summary>
+            Read a record from database
+            </summary>
+            <param name="r"> Data base reader</param>
+            <param name="index"> index</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RCVerifySignatureOptionsRecord.ReadDB(System.Data.IDataReader)">
+            <summary>
+            Read from database
+            </summary>
+            <param name="r"> Data reader</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RCVerifySignatureOptionsRecord.ReadIM(OutSystems.NssJWT_Core.RCVerifySignatureOptionsRecord)">
+            <summary>
+            Read from record
+            </summary>
+            <param name="r"> Record</param>
+        </member>
+        <member name="T:OutSystems.NssJWT_Core.RCTokenHeaderRecord">
+            <summary>
+            Structure <code>RCTokenHeaderRecord</code>
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RCTokenHeaderRecord.Read(System.Data.IDataReader,System.Int32@)">
+            <summary>
+            Read a record from database
+            </summary>
+            <param name="r"> Data base reader</param>
+            <param name="index"> index</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RCTokenHeaderRecord.ReadDB(System.Data.IDataReader)">
+            <summary>
+            Read from database
+            </summary>
+            <param name="r"> Data reader</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RCTokenHeaderRecord.ReadIM(OutSystems.NssJWT_Core.RCTokenHeaderRecord)">
+            <summary>
+            Read from record
+            </summary>
+            <param name="r"> Record</param>
+        </member>
+        <member name="T:OutSystems.NssJWT_Core.RLNameValuePairRecordList">
+            <summary>
+            RecordList type <code>RLNameValuePairRecordList</code> that represents a record list of
+             <code>NameValuePair</code>
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLNameValuePairRecordList.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLNameValuePairRecordList.#ctor(System.Data.IDbTransaction)">
+            <summary>
+            Constructor with transaction parameter
+            </summary>
+            <param name="trans"> IDbTransaction Parameter</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLNameValuePairRecordList.#ctor(System.Data.IDbTransaction,OutSystems.HubEdition.RuntimePlatform.Db.OSList{OutSystems.NssJWT_Core.RCNameValuePairRecord}.ReadDBMethodDelegate)">
+            <summary>
+            Constructor with transaction parameter and alternate read method
+            </summary>
+            <param name="trans"> IDbTransaction Parameter</param>
+            <param name="alternateReadDBMethod"> Alternate Read Method</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLNameValuePairRecordList.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructor declaration for serialization
+            </summary>
+            <param name="info"> SerializationInfo</param>
+            <param name="context"> StreamingContext</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLNameValuePairRecordList.NewList">
+            <summary>
+            Create as new list
+            </summary>
+            <returns>The new record list</returns>
+        </member>
+        <member name="T:OutSystems.NssJWT_Core.RLTokenSymmetricSigningCredentialsRecordList">
+            <summary>
+            RecordList type <code>RLTokenSymmetricSigningCredentialsRecordList</code> that represents a record
+             list of <code>TokenSymmetricSigningCredentials</code>
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLTokenSymmetricSigningCredentialsRecordList.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLTokenSymmetricSigningCredentialsRecordList.#ctor(System.Data.IDbTransaction)">
+            <summary>
+            Constructor with transaction parameter
+            </summary>
+            <param name="trans"> IDbTransaction Parameter</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLTokenSymmetricSigningCredentialsRecordList.#ctor(System.Data.IDbTransaction,OutSystems.HubEdition.RuntimePlatform.Db.OSList{OutSystems.NssJWT_Core.RCTokenSymmetricSigningCredentialsRecord}.ReadDBMethodDelegate)">
+            <summary>
+            Constructor with transaction parameter and alternate read method
+            </summary>
+            <param name="trans"> IDbTransaction Parameter</param>
+            <param name="alternateReadDBMethod"> Alternate Read Method</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLTokenSymmetricSigningCredentialsRecordList.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructor declaration for serialization
+            </summary>
+            <param name="info"> SerializationInfo</param>
+            <param name="context"> StreamingContext</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLTokenSymmetricSigningCredentialsRecordList.NewList">
+            <summary>
+            Create as new list
+            </summary>
+            <returns>The new record list</returns>
+        </member>
+        <member name="T:OutSystems.NssJWT_Core.RLTokenAsymmetricSigningCredentialsRecordList">
+            <summary>
+            RecordList type <code>RLTokenAsymmetricSigningCredentialsRecordList</code> that represents a record
+             list of <code>TokenAsymmetricSigningCredentials</code>
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLTokenAsymmetricSigningCredentialsRecordList.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLTokenAsymmetricSigningCredentialsRecordList.#ctor(System.Data.IDbTransaction)">
+            <summary>
+            Constructor with transaction parameter
+            </summary>
+            <param name="trans"> IDbTransaction Parameter</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLTokenAsymmetricSigningCredentialsRecordList.#ctor(System.Data.IDbTransaction,OutSystems.HubEdition.RuntimePlatform.Db.OSList{OutSystems.NssJWT_Core.RCTokenAsymmetricSigningCredentialsRecord}.ReadDBMethodDelegate)">
+            <summary>
+            Constructor with transaction parameter and alternate read method
+            </summary>
+            <param name="trans"> IDbTransaction Parameter</param>
+            <param name="alternateReadDBMethod"> Alternate Read Method</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLTokenAsymmetricSigningCredentialsRecordList.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructor declaration for serialization
+            </summary>
+            <param name="info"> SerializationInfo</param>
+            <param name="context"> StreamingContext</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLTokenAsymmetricSigningCredentialsRecordList.NewList">
+            <summary>
+            Create as new list
+            </summary>
+            <returns>The new record list</returns>
+        </member>
+        <member name="T:OutSystems.NssJWT_Core.RLTokenPayloadRecordList">
+            <summary>
+            RecordList type <code>RLTokenPayloadRecordList</code> that represents a record list of
+             <code>TokenPayload</code>
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLTokenPayloadRecordList.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLTokenPayloadRecordList.#ctor(System.Data.IDbTransaction)">
+            <summary>
+            Constructor with transaction parameter
+            </summary>
+            <param name="trans"> IDbTransaction Parameter</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLTokenPayloadRecordList.#ctor(System.Data.IDbTransaction,OutSystems.HubEdition.RuntimePlatform.Db.OSList{OutSystems.NssJWT_Core.RCTokenPayloadRecord}.ReadDBMethodDelegate)">
+            <summary>
+            Constructor with transaction parameter and alternate read method
+            </summary>
+            <param name="trans"> IDbTransaction Parameter</param>
+            <param name="alternateReadDBMethod"> Alternate Read Method</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLTokenPayloadRecordList.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructor declaration for serialization
+            </summary>
+            <param name="info"> SerializationInfo</param>
+            <param name="context"> StreamingContext</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLTokenPayloadRecordList.NewList">
+            <summary>
+            Create as new list
+            </summary>
+            <returns>The new record list</returns>
+        </member>
+        <member name="T:OutSystems.NssJWT_Core.RLVerifySignatureOptionsRecordList">
+            <summary>
+            RecordList type <code>RLVerifySignatureOptionsRecordList</code> that represents a record list of
+             <code>VerifySignatureOptions</code>
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLVerifySignatureOptionsRecordList.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLVerifySignatureOptionsRecordList.#ctor(System.Data.IDbTransaction)">
+            <summary>
+            Constructor with transaction parameter
+            </summary>
+            <param name="trans"> IDbTransaction Parameter</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLVerifySignatureOptionsRecordList.#ctor(System.Data.IDbTransaction,OutSystems.HubEdition.RuntimePlatform.Db.OSList{OutSystems.NssJWT_Core.RCVerifySignatureOptionsRecord}.ReadDBMethodDelegate)">
+            <summary>
+            Constructor with transaction parameter and alternate read method
+            </summary>
+            <param name="trans"> IDbTransaction Parameter</param>
+            <param name="alternateReadDBMethod"> Alternate Read Method</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLVerifySignatureOptionsRecordList.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructor declaration for serialization
+            </summary>
+            <param name="info"> SerializationInfo</param>
+            <param name="context"> StreamingContext</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLVerifySignatureOptionsRecordList.NewList">
+            <summary>
+            Create as new list
+            </summary>
+            <returns>The new record list</returns>
+        </member>
+        <member name="T:OutSystems.NssJWT_Core.RLTokenHeaderRecordList">
+            <summary>
+            RecordList type <code>RLTokenHeaderRecordList</code> that represents a record list of
+             <code>TokenHeader</code>
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLTokenHeaderRecordList.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLTokenHeaderRecordList.#ctor(System.Data.IDbTransaction)">
+            <summary>
+            Constructor with transaction parameter
+            </summary>
+            <param name="trans"> IDbTransaction Parameter</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLTokenHeaderRecordList.#ctor(System.Data.IDbTransaction,OutSystems.HubEdition.RuntimePlatform.Db.OSList{OutSystems.NssJWT_Core.RCTokenHeaderRecord}.ReadDBMethodDelegate)">
+            <summary>
+            Constructor with transaction parameter and alternate read method
+            </summary>
+            <param name="trans"> IDbTransaction Parameter</param>
+            <param name="alternateReadDBMethod"> Alternate Read Method</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLTokenHeaderRecordList.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructor declaration for serialization
+            </summary>
+            <param name="info"> SerializationInfo</param>
+            <param name="context"> StreamingContext</param>
+        </member>
+        <member name="M:OutSystems.NssJWT_Core.RLTokenHeaderRecordList.NewList">
+            <summary>
+            Create as new list
+            </summary>
+            <returns>The new record list</returns>
+        </member>
+    </members>
+</doc>

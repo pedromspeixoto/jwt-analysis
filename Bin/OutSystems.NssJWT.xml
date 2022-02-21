@@ -1,0 +1,331 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OutSystems.NssJWT</name>
+    </assembly>
+    <members>
+        <member name="M:OutSystems.NssJWT.CssJWT.MssCreateToken(OutSystems.NssJWT.RCSymmetricSigningCredentialsRecord,OutSystems.NssJWT.RCAsymmetricSigningCredentialsRecord,System.String,System.String,System.String,System.String,System.DateTime,System.DateTime,System.DateTime,OutSystems.NssJWT.RLClaimItemRecordList,System.String@,System.String@,System.String@)">
+            <summary>
+            Created a new token based on the defined claims and signing definitions.
+            </summary>
+            <param name="ssSymmetricCredentials">Credentials necessary to sign the token with a symmetric key.</param>
+            <param name="ssAsymmetricCredentials">Credentials necessary to sign the token with an asymmetric key.</param>
+            <param name="ssIssuer">Direct value for &quot;iss&quot; claim, will override existing value in Claims if present.</param>
+            <param name="ssSubject">Direct value for "sub" claim, will be added to the existing values in Claims if present.</param>
+            <param name="ssAudience">Direct value for "aud" claim, will be added to  the existing values in Claims if present.</param>
+            <param name="ssExpiration">Direct value for &quot;exp&quot;, will override existing value in Claims if present.</param>
+            <param name="ssNotBefore">Direct value for &quot;nbf&quot; , will override existing value in Claims if present.</param>
+            <param name="ssIssuedAt">Direct value for "iat" claim, will override existing value in Claims if present. (Default: current date time)</param>
+            <param name="ssTokenId">Direct value for &quot;jti&quot;, will override existing value in Claims if present.</param>
+            <param name="ssClaims">Complete list of the claims for the token. </param>
+            <param name="ssPlainToken">Unencoded and formatted JSON of the JSON Web Token.</param>
+            <param name="ssSignedAndEncodedToken">Encoded and signed JSON Web TOken.</param>
+            <param name="ssResultMessage">Resulting status message, for additional information.</param>
+        </member>
+        <member name="M:OutSystems.NssJWT.CssJWT.MssReadToken(System.String,System.String@)">
+            <summary>
+            Reads a token encoded in JSON Compact serialized format.
+            </summary>
+            <param name="ssToken"></param>
+            <param name="ssResultMessage"></param>
+        </member>
+        <member name="M:OutSystems.NssJWT.CssJWT.MssValidateToken(System.String,System.String@)">
+            <summary>
+            
+            </summary>
+            <param name="ssToken"></param>
+            <param name="ssResultMessage"></param>
+        </member>
+        <member name="M:OutSystems.NssJWT.IssJWT.MssCreateToken(OutSystems.NssJWT.RCSymmetricSigningCredentialsRecord,OutSystems.NssJWT.RCAsymmetricSigningCredentialsRecord,System.String,System.String,System.String,System.String,System.DateTime,System.DateTime,System.DateTime,OutSystems.NssJWT.RLClaimItemRecordList,System.String@,System.String@,System.String@)">
+            <summary>
+            Created a new token based on the defined claims and signing definitions.
+            If both symmetric and asymmetric signing credentials are passed as input will throw an error, if none of signing credentials are passed the token will be generated but not signed.
+            </summary>
+            <param name="ssSymmetricCredentials">Credentials necessary to sign the token with a symmetric key.</param>
+            <param name="ssAsymmetricCredentials">Credentials necessary to sign the token with an asymmetric key.</param>
+            <param name="ssTokenId">Direct value for &quot;jti&quot; claim, will override existing value in Claims if present.</param>
+            <param name="ssIssuer">Direct value for &quot;iss&quot; claim, will override existing value in Claims if present.</param>
+            <param name="ssSubject">Direct value for &quot;sub&quot; claim, will be added to the existing values in Claims if present.</param>
+            <param name="ssAudience">Direct value for &quot;aud&quot; claim, will be added to  the existing values in Claims if present.</param>
+            <param name="ssExpiration">Direct value for &quot;exp&quot; claim, will override existing value in Claims if present.</param>
+            <param name="ssNotBefore">Direct value for &quot;nbf&quot; claim, will override existing value in Claims if present.</param>
+            <param name="ssIssuedAt">Direct value for &quot;iat&quot; claim, will override existing value in Claims if present. (Default: current date time)</param>
+            <param name="ssClaims">Complete list of the custom claims for the token. </param>
+            <param name="ssResultMessage"></param>
+            <param name="ssPlainToken"></param>
+            <param name="ssSignedAndEncodedToken"></param>
+        </member>
+        <member name="M:OutSystems.NssJWT.IssJWT.MssReadToken(System.String,System.String@)">
+            <summary>
+            [NOT IMPLEMENTED] Reads a token encoded in JSON Compact serialized format.
+            </summary>
+            <param name="ssToken"></param>
+            <param name="ssResultMessage"></param>
+        </member>
+        <member name="M:OutSystems.NssJWT.IssJWT.MssValidateToken(System.String,System.String@)">
+            <summary>
+            [NOT IMPLEMENTED
+            </summary>
+            <param name="ssToken"></param>
+            <param name="ssResultMessage"></param>
+        </member>
+        <member name="T:OutSystems.NssJWT.STClaimItemStructure">
+            <summary>
+            Structure <code>STClaimItemStructure</code> that represents the Service Studio structure
+             <code>ClaimItem</code> <p> Description: Name-value pair for a Claim.</p>
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT.STClaimItemStructure.Read(System.Data.IDataReader,System.Int32@)">
+            <summary>
+            Read a record from database
+            </summary>
+            <param name="r"> Data base reader</param>
+            <param name="index"> index</param>
+        </member>
+        <member name="M:OutSystems.NssJWT.STClaimItemStructure.ReadDB(System.Data.IDataReader)">
+            <summary>
+            Read from database
+            </summary>
+            <param name="r"> Data reader</param>
+        </member>
+        <member name="M:OutSystems.NssJWT.STClaimItemStructure.ReadIM(OutSystems.NssJWT.STClaimItemStructure)">
+            <summary>
+            Read from record
+            </summary>
+            <param name="r"> Record</param>
+        </member>
+        <member name="T:OutSystems.NssJWT.STSymmetricSigningCredentialsStructure">
+            <summary>
+            Structure <code>STSymmetricSigningCredentialsStructure</code> that represents the Service Studio
+             structure <code>SymmetricSigningCredentials</code> <p> Description: </p>
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT.STSymmetricSigningCredentialsStructure.Read(System.Data.IDataReader,System.Int32@)">
+            <summary>
+            Read a record from database
+            </summary>
+            <param name="r"> Data base reader</param>
+            <param name="index"> index</param>
+        </member>
+        <member name="M:OutSystems.NssJWT.STSymmetricSigningCredentialsStructure.ReadDB(System.Data.IDataReader)">
+            <summary>
+            Read from database
+            </summary>
+            <param name="r"> Data reader</param>
+        </member>
+        <member name="M:OutSystems.NssJWT.STSymmetricSigningCredentialsStructure.ReadIM(OutSystems.NssJWT.STSymmetricSigningCredentialsStructure)">
+            <summary>
+            Read from record
+            </summary>
+            <param name="r"> Record</param>
+        </member>
+        <member name="T:OutSystems.NssJWT.STAsymmetricSigningCredentialsStructure">
+            <summary>
+            Structure <code>STAsymmetricSigningCredentialsStructure</code> that represents the Service Studio
+             structure <code>AsymmetricSigningCredentials</code> <p> Description: </p>
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT.STAsymmetricSigningCredentialsStructure.Read(System.Data.IDataReader,System.Int32@)">
+            <summary>
+            Read a record from database
+            </summary>
+            <param name="r"> Data base reader</param>
+            <param name="index"> index</param>
+        </member>
+        <member name="M:OutSystems.NssJWT.STAsymmetricSigningCredentialsStructure.ReadDB(System.Data.IDataReader)">
+            <summary>
+            Read from database
+            </summary>
+            <param name="r"> Data reader</param>
+        </member>
+        <member name="M:OutSystems.NssJWT.STAsymmetricSigningCredentialsStructure.ReadIM(OutSystems.NssJWT.STAsymmetricSigningCredentialsStructure)">
+            <summary>
+            Read from record
+            </summary>
+            <param name="r"> Record</param>
+        </member>
+        <member name="T:OutSystems.NssJWT.RCClaimItemRecord">
+            <summary>
+            Structure <code>RCClaimItemRecord</code>
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT.RCClaimItemRecord.Read(System.Data.IDataReader,System.Int32@)">
+            <summary>
+            Read a record from database
+            </summary>
+            <param name="r"> Data base reader</param>
+            <param name="index"> index</param>
+        </member>
+        <member name="M:OutSystems.NssJWT.RCClaimItemRecord.ReadDB(System.Data.IDataReader)">
+            <summary>
+            Read from database
+            </summary>
+            <param name="r"> Data reader</param>
+        </member>
+        <member name="M:OutSystems.NssJWT.RCClaimItemRecord.ReadIM(OutSystems.NssJWT.RCClaimItemRecord)">
+            <summary>
+            Read from record
+            </summary>
+            <param name="r"> Record</param>
+        </member>
+        <member name="T:OutSystems.NssJWT.RCSymmetricSigningCredentialsRecord">
+            <summary>
+            Structure <code>RCSymmetricSigningCredentialsRecord</code>
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT.RCSymmetricSigningCredentialsRecord.Read(System.Data.IDataReader,System.Int32@)">
+            <summary>
+            Read a record from database
+            </summary>
+            <param name="r"> Data base reader</param>
+            <param name="index"> index</param>
+        </member>
+        <member name="M:OutSystems.NssJWT.RCSymmetricSigningCredentialsRecord.ReadDB(System.Data.IDataReader)">
+            <summary>
+            Read from database
+            </summary>
+            <param name="r"> Data reader</param>
+        </member>
+        <member name="M:OutSystems.NssJWT.RCSymmetricSigningCredentialsRecord.ReadIM(OutSystems.NssJWT.RCSymmetricSigningCredentialsRecord)">
+            <summary>
+            Read from record
+            </summary>
+            <param name="r"> Record</param>
+        </member>
+        <member name="T:OutSystems.NssJWT.RCAsymmetricSigningCredentialsRecord">
+            <summary>
+            Structure <code>RCAsymmetricSigningCredentialsRecord</code>
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT.RCAsymmetricSigningCredentialsRecord.Read(System.Data.IDataReader,System.Int32@)">
+            <summary>
+            Read a record from database
+            </summary>
+            <param name="r"> Data base reader</param>
+            <param name="index"> index</param>
+        </member>
+        <member name="M:OutSystems.NssJWT.RCAsymmetricSigningCredentialsRecord.ReadDB(System.Data.IDataReader)">
+            <summary>
+            Read from database
+            </summary>
+            <param name="r"> Data reader</param>
+        </member>
+        <member name="M:OutSystems.NssJWT.RCAsymmetricSigningCredentialsRecord.ReadIM(OutSystems.NssJWT.RCAsymmetricSigningCredentialsRecord)">
+            <summary>
+            Read from record
+            </summary>
+            <param name="r"> Record</param>
+        </member>
+        <member name="T:OutSystems.NssJWT.RLClaimItemRecordList">
+            <summary>
+            RecordList type <code>RLClaimItemRecordList</code> that represents a record list of
+             <code>ClaimItem</code>
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT.RLClaimItemRecordList.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT.RLClaimItemRecordList.#ctor(System.Data.IDbTransaction)">
+            <summary>
+            Constructor with transaction parameter
+            </summary>
+            <param name="trans"> IDbTransaction Parameter</param>
+        </member>
+        <member name="M:OutSystems.NssJWT.RLClaimItemRecordList.#ctor(System.Data.IDbTransaction,OutSystems.HubEdition.RuntimePlatform.Db.OSList{OutSystems.NssJWT.RCClaimItemRecord}.ReadDBMethodDelegate)">
+            <summary>
+            Constructor with transaction parameter and alternate read method
+            </summary>
+            <param name="trans"> IDbTransaction Parameter</param>
+            <param name="alternateReadDBMethod"> Alternate Read Method</param>
+        </member>
+        <member name="M:OutSystems.NssJWT.RLClaimItemRecordList.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructor declaration for serialization
+            </summary>
+            <param name="info"> SerializationInfo</param>
+            <param name="context"> StreamingContext</param>
+        </member>
+        <member name="M:OutSystems.NssJWT.RLClaimItemRecordList.NewList">
+            <summary>
+            Create as new list
+            </summary>
+            <returns>The new record list</returns>
+        </member>
+        <member name="T:OutSystems.NssJWT.RLSymmetricSigningCredentialsRecordList">
+            <summary>
+            RecordList type <code>RLSymmetricSigningCredentialsRecordList</code> that represents a record list
+             of <code>SymmetricSigningCredentials</code>
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT.RLSymmetricSigningCredentialsRecordList.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT.RLSymmetricSigningCredentialsRecordList.#ctor(System.Data.IDbTransaction)">
+            <summary>
+            Constructor with transaction parameter
+            </summary>
+            <param name="trans"> IDbTransaction Parameter</param>
+        </member>
+        <member name="M:OutSystems.NssJWT.RLSymmetricSigningCredentialsRecordList.#ctor(System.Data.IDbTransaction,OutSystems.HubEdition.RuntimePlatform.Db.OSList{OutSystems.NssJWT.RCSymmetricSigningCredentialsRecord}.ReadDBMethodDelegate)">
+            <summary>
+            Constructor with transaction parameter and alternate read method
+            </summary>
+            <param name="trans"> IDbTransaction Parameter</param>
+            <param name="alternateReadDBMethod"> Alternate Read Method</param>
+        </member>
+        <member name="M:OutSystems.NssJWT.RLSymmetricSigningCredentialsRecordList.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructor declaration for serialization
+            </summary>
+            <param name="info"> SerializationInfo</param>
+            <param name="context"> StreamingContext</param>
+        </member>
+        <member name="M:OutSystems.NssJWT.RLSymmetricSigningCredentialsRecordList.NewList">
+            <summary>
+            Create as new list
+            </summary>
+            <returns>The new record list</returns>
+        </member>
+        <member name="T:OutSystems.NssJWT.RLAsymmetricSigningCredentialsRecordList">
+            <summary>
+            RecordList type <code>RLAsymmetricSigningCredentialsRecordList</code> that represents a record list
+             of <code>AsymmetricSigningCredentials</code>
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT.RLAsymmetricSigningCredentialsRecordList.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:OutSystems.NssJWT.RLAsymmetricSigningCredentialsRecordList.#ctor(System.Data.IDbTransaction)">
+            <summary>
+            Constructor with transaction parameter
+            </summary>
+            <param name="trans"> IDbTransaction Parameter</param>
+        </member>
+        <member name="M:OutSystems.NssJWT.RLAsymmetricSigningCredentialsRecordList.#ctor(System.Data.IDbTransaction,OutSystems.HubEdition.RuntimePlatform.Db.OSList{OutSystems.NssJWT.RCAsymmetricSigningCredentialsRecord}.ReadDBMethodDelegate)">
+            <summary>
+            Constructor with transaction parameter and alternate read method
+            </summary>
+            <param name="trans"> IDbTransaction Parameter</param>
+            <param name="alternateReadDBMethod"> Alternate Read Method</param>
+        </member>
+        <member name="M:OutSystems.NssJWT.RLAsymmetricSigningCredentialsRecordList.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructor declaration for serialization
+            </summary>
+            <param name="info"> SerializationInfo</param>
+            <param name="context"> StreamingContext</param>
+        </member>
+        <member name="M:OutSystems.NssJWT.RLAsymmetricSigningCredentialsRecordList.NewList">
+            <summary>
+            Create as new list
+            </summary>
+            <returns>The new record list</returns>
+        </member>
+    </members>
+</doc>
